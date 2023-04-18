@@ -1,25 +1,27 @@
 <!DOCTYPE html>
 <html>
 <script> 
-function resetOnce() {
-  // Note that we are setting `SameSite=None;` in this example because the example
-  // needs to work cross-origin.
-  // It is more common not to set the `SameSite` attribute, which results in the default,
-  // and more secure, value of `SameSite=Lax;`
-  document.cookie ="doSomethingOnlyOnce=; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=None; Secure";
-  const output = document.getElementById("reset-once");
-  output.textContent = "> Reset!";
+document.cookie = "reader=1; SameSite=None; Secure";
+
+function checkACookieExists() {
+  if (
+    document.cookie.split(";").some((item) => item.trim().startsWith("reader="))
+  ) {
+    const output = document.getElementById("a-cookie-existence");
+    output.textContent = '> The cookie "reader" exists';
+  }
 }
-function clearOutputResetOnce() {
-  const output = document.getElementById("reset-once");
+
+function clearOutputACookieExists() {
+  const output = document.getElementById("a-cookie-existence");
   output.textContent = "";
 }
 </script>
 <body> Bine ai venit la lab 
-    <button onclick="resetOnce()">Reset only once cookie</button>
-    <button onclick="clearOutputResetOnce()">Clear</button>
+    <button onclick="checkACookieExists()">Check a cookie exists</button>
+    <button onclick="clearOutputACookieExists()">Clear</button>
 <div>
-  <code id="reset-once"></code>
+  <code id="a-cookie-existence"></code>
 </div>
 </body>
 </html>
