@@ -1,33 +1,28 @@
 <!DOCTYPE html>
 <html>
 <script> 
-function doOnce() {
-  if (
-    !document.cookie
-      .split("; ")
-      .find((row) => row.startsWith("Unsingurlucru"))
-  ) {
-    // Note that we are setting `SameSite=None;` in this example because the example
-    // needs to work cross-origin.
-    // It is more common not to set the `SameSite` attribute, which results in the default,
-    // and more secure, value of `SameSite=Lax;`
-    document.cookie = "Unsingurlucru=true; expires=Fri, 31 Dec 9999 23:59:59 GMT; SameSite=None; Secure";
+function resetOnce() {
+  // Note that we are setting `SameSite=None;` in this example because the example
+  // needs to work cross-origin.
+  // It is more common not to set the `SameSite` attribute, which results in the default,
+  // and more secure, value of `SameSite=Lax;`
+  document.cookie ="doSomethingOnlyOnce=; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=None; Secure";
 
-    const output = document.getElementById("do-once");
-    output.textContent = "> Un singur lucru facut!";
-  }
+  const output = document.getElementById("reset-once");
+  output.textContent = "> Reset!";
 }
-function clearOutputDoOnce() {
-  const output = document.getElementById("do-once");
+
+function clearOutputResetOnce() {
+  const output = document.getElementById("reset-once");
   output.textContent = "";
 }
 </script>
 <body> Bine ai venit la lab 
-    <button onclick="doOnce()">Only do something once</button>
+    <button onclick="resetOnce()">Reset only once cookie</button>
 
-<button onclick="clearOutputDoOnce()">Clear</button>
+<button onclick="clearOutputResetOnce()">Clear</button>
 <div>
-  <code id="do-once"></code>
+  <code id="reset-once"></code>
 </div>
 </body>
 </html>
