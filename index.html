@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html>
 <script> 
-
-
 function doOnce() {
   if (
     !document.cookie
@@ -13,8 +11,7 @@ function doOnce() {
     // needs to work cross-origin.
     // It is more common not to set the `SameSite` attribute, which results in the default,
     // and more secure, value of `SameSite=Lax;`
-    document.cookie =
-      "Unsingurlucru=true; expires=Fri, 31 Dec 9999 23:59:59 GMT; SameSite=None; Secure";
+    document.cookie = "Unsingurlucru=true; expires=Fri, 31 Dec 9999 23:59:59 GMT; SameSite=None; Secure";
 
     const output = document.getElementById("do-once");
     output.textContent = "> Un singur lucru facut!";
