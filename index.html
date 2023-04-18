@@ -2,30 +2,37 @@
 <html>
 <script> 
 
-document.cookie = "test1=Hello; SameSite=None; Secure";
-document.cookie = "test2=World; SameSite=None; Secure";
 
-const cookieValue = document.cookie
-  .split("; ")
-  .find((row) => row.startsWith("test2="))
-  ?.split("=")[1];
+function doOnce() {
+  if (
+    !document.cookie
+      .split("; ")
+      .find((row) => row.startsWith("Unsingurlucru"))
+  ) {
+    // Note that we are setting `SameSite=None;` in this example because the example
+    // needs to work cross-origin.
+    // It is more common not to set the `SameSite` attribute, which results in the default,
+    // and more secure, value of `SameSite=Lax;`
+    document.cookie =
+      "Unsingurlucru=true; expires=Fri, 31 Dec 9999 23:59:59 GMT; SameSite=None; Secure";
 
-function showCookieValue() {
-  const output = document.getElementById("cookie-value");
-  output.textContent = `> ${cookieValue}`;
+    const output = document.getElementById("do-once");
+    output.textContent = "> Un singur lucru facut!";
+  }
 }
 
-function clearOutputCookieValue() {
-  const output = document.getElementById("cookie-value");
+function clearOutputDoOnce() {
+  const output = document.getElementById("do-once");
   output.textContent = "";
 }
 </script>
 <body> Bine ai venit la lab 
-    <button onclick="showCookieValue()">Show cookie value</button>
+    <button onclick="doOnce()">Only do something once</button>
 
-<button onclick="clearOutputCookieValue()">Clear</button>
+<button onclick="clearOutputDoOnce()">Clear</button>
+
 <div>
-  <code id="cookie-value"></code>
-</div> 
+  <code id="do-once"></code>
+</div>
 </body>
 </html>
